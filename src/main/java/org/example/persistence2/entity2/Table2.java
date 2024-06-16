@@ -1,4 +1,4 @@
-package org.example.entities;
+package org.example.persistence2.entity2;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 @Setter
 @Entity
 @Table(name = "table1")
-@Qualifier(Constants.DATA_SOURCE_1)
-public class Table1 {
+@Qualifier(Constants.DATA_SOURCE_2)
+public class Table2 {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
