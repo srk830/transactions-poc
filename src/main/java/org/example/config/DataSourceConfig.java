@@ -1,6 +1,7 @@
 package org.example.config;
 
 import com.zaxxer.hikari.HikariDataSource;
+import org.example.constants.Constants;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,13 +21,13 @@ public class DataSourceConfig {
         return properties;
     }
 
-    @Bean(name = "dataSource1")
+    @Bean(name = Constants.DATA_SOURCE_1)
     @ConfigurationProperties(prefix = "spring.datasource1")
     public DataSource dataSource1() {
         return new HikariDataSource();
     }
 
-    @Bean(name = "dataSource2")
+    @Bean(name = Constants.DATA_SOURCE_2)
     @ConfigurationProperties(prefix = "spring.datasource2")
     public DataSource dataSource2() {
         return new HikariDataSource();

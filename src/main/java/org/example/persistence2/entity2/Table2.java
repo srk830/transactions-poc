@@ -3,14 +3,11 @@ package org.example.persistence2.entity2;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.constants.Constants;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "table1")
-@Qualifier(Constants.DATA_SOURCE_2)
+@Table(name = "table2")
 public class Table2 {
 
     @Id
