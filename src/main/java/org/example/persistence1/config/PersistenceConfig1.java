@@ -22,11 +22,11 @@ import java.util.Properties;
         transactionManagerRef = Constants.TRANSACTION_MANAGER_1)
 public class PersistenceConfig1 {
 
-    @Bean(name = Constants.DATA_SOURCE_1)
-    @ConfigurationProperties(prefix = "spring.datasource1")
-    public DataSource dataSource1() {
-        return new HikariDataSource();
-    }
+//    @Bean(name = Constants.DATA_SOURCE_1)
+//    @ConfigurationProperties(prefix = "spring.datasource1")
+//    public DataSource dataSource1() {
+//        return new HikariDataSource();
+//    }
 
     @Bean(name = Constants.ENTITY_MANAGER_FACTORY_1)
     public LocalContainerEntityManagerFactoryBean entityManagerFactory1(@Qualifier(Constants.DATA_SOURCE_1) DataSource dataSource) {
@@ -34,11 +34,13 @@ public class PersistenceConfig1 {
         properties.setProperty("hibernate.hbm2ddl.auto", "none");
         properties.setProperty("hibernate.show_sql", "true");
         properties.setProperty("use_jdbc_metadata_defaults", "false");
+
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-        factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        factory.setJpaProperties(properties);
-        factory.setPackagesToScan(Constants.ENTITIES_PACKAGE_1);
         factory.setDataSource(dataSource);
+        factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        factory.setPackagesToScan(Constants.ENTITIES_PACKAGE_1);
+        factory.setPersistenceUnitName("persistenceUnit1");
+        factory.setJpaProperties(properties);
         return factory;
     }
 
