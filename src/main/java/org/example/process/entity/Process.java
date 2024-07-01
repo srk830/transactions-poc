@@ -1,4 +1,4 @@
-package org.example.persistence2.entity2;
+package org.example.process.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -7,8 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "table2")
-public class Table2 {
+@Table(name = "process")
+public class Process {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

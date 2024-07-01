@@ -69,6 +69,13 @@
             <version>6.0.0</version>
         </dependency>
 
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.jboss.narayana.jta/narayana-jta &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.jboss.narayana.jta</groupId>-->
+<!--            <artifactId>narayana-jta</artifactId>-->
+<!--            <version>7.0.1.Final</version>-->
+<!--        </dependency>-->
+
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>

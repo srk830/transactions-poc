@@ -1,4 +1,4 @@
-package org.example.persistence1.entity1;
+package org.example.master.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -7,8 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "table1")
-public class Table1 {
+@Table(name = "master")
+public class Master {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

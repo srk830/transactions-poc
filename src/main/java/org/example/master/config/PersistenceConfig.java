@@ -1,8 +1,8 @@
-package org.example.persistence2.config;
+package org.example.master.config;
 
 import com.zaxxer.hikari.HikariDataSource;
 import jakarta.persistence.EntityManagerFactory;
-import org.example.constants.Constants;
+import org.example.master.constants.Constants;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -17,19 +17,19 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@EnableJpaRepositories(value = Constants.REPOSITORIES_PACKAGE_2,
-        entityManagerFactoryRef = Constants.ENTITY_MANAGER_FACTORY_2,
-        transactionManagerRef = Constants.TRANSACTION_MANAGER_2)
-public class PersistenceConfig2 {
+@EnableJpaRepositories(value = Constants.REPOSITORIES_PACKAGE,
+        entityManagerFactoryRef = Constants.ENTITY_MANAGER_FACTORY,
+        transactionManagerRef = Constants.TRANSACTION_MANAGER)
+public class PersistenceConfig {
 
-//    @Bean(name = Constants.DATA_SOURCE_2)
-//    @ConfigurationProperties(prefix = "spring.datasource2")
-//    public DataSource dataSource2() {
-//        return new HikariDataSource();
-//    }
+    @Bean(name = Constants.DATA_SOURCE)
+    @ConfigurationProperties(prefix = "master.datasource")
+    public DataSource dataSource2() {
+        return new HikariDataSource();
+    }
 
-    @Bean(name = Constants.ENTITY_MANAGER_FACTORY_2)
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory1(@Qualifier(Constants.DATA_SOURCE_2) DataSource dataSource) {
+    @Bean(name = Constants.ENTITY_MANAGER_FACTORY)
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory1(@Qualifier(Constants.DATA_SOURCE) DataSource dataSource) {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "none");
         properties.setProperty("hibernate.show_sql", "true");
@@ -38,14 +38,14 @@ public class PersistenceConfig2 {
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setDataSource(dataSource);
         factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        factory.setPackagesToScan(Constants.ENTITIES_PACKAGE_2);
+        factory.setPackagesToScan(Constants.ENTITIES_PACKAGE);
         factory.setPersistenceUnitName("persistenceUnit2");
         factory.setJpaProperties(properties);
         return factory;
     }
 
-    @Bean(name = Constants.TRANSACTION_MANAGER_2)
-    public PlatformTransactionManager transactionManager1(@Qualifier(Constants.ENTITY_MANAGER_FACTORY_2) EntityManagerFactory entityManagerFactory) {
+    @Bean(name = Constants.TRANSACTION_MANAGER)
+    public PlatformTransactionManager transactionManager1(@Qualifier(Constants.ENTITY_MANAGER_FACTORY) EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);
     }
 }

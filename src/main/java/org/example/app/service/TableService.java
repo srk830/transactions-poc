@@ -1,9 +1,9 @@
-package org.example.service;
+package org.example.app.service;
 
-import org.example.persistence1.entity1.Table1;
-import org.example.persistence1.repository1.Table1Repository;
-import org.example.persistence2.entity2.Table2;
-import org.example.persistence2.repository2.Table2Repository;
+import org.example.master.entity.Master;
+import org.example.master.repository.MasterRepository;
+import org.example.process.entity.Process;
+import org.example.process.repository.ProcessRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,23 +12,23 @@ import org.springframework.transaction.annotation.Transactional;
 public class TableService {
 
     @Autowired
-    private Table1Repository table1Repository;
+    private MasterRepository masterRepository;
 
     @Autowired
-    private Table2Repository table2Repository;
+    private ProcessRepository processRepository;
 
     @Transactional(transactionManager = "jtaTransactionManager", rollbackFor = Exception.class)
     public void save() {
         String time = String.valueOf(System.currentTimeMillis());
-        Table1 table1 = new Table1();
+        Master table1 = new Master();
         table1.setCol1(time);
         table1.setCol2("1");
-        Table2 table2 = new Table2();
+        Process table2 = new Process();
         table2.setCol1(time);
         table2.setCol2("1");
 
-        table1Repository.save(table1);
-        table2Repository.save(table2);
+        masterRepository.save(table1);
+        processRepository.save(table2);
         System.out.println("done");
 //        throw new RuntimeException("error");
     }
